@@ -1,0 +1,56 @@
+
+#TO install the neccessary
+sudo apt-get update
+    2  sudo apt-get install nginx mariadb-server php8.3-fpm -y
+    3  php --version
+    4  sudo service nginx start
+    5  sudo service nginx status
+    6  sudo service mariadb start
+    7  sudo service mariadb status
+    8  sudo service php8.3-fpm start
+    9  sudo service php8.3-fpm status
+
+# To create html and php file
+    sudo nano /var/www/html/forms.html
+    sudo nano /var/www/html/submit.php
+
+#To create databse
+sudo mysql
+MariaDB [(none)]> alter user 'root'@'localhost' identified by "Pass@123";
+Query OK, 0 rows affected (0.003 sec)
+ 
+MariaDB [(none)]> create database Login;
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| Login              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+ 
+MariaDB [(none)]> use Login;
+Database changed
+MariaDB [Login]> create table users(id int primary key auto_increment, name varchar(100), email varchar(100), website varchar(100), comment varchar(200), gender varchar(50));
+Query OK, 0 rows affected (0.012 sec)
+ 
+MariaDB [Login]> desc users;
++---------+--------------+------+-----+---------+----------------+
+| Field   | Type         | Null | Key | Default | Extra          |
++---------+--------------+------+-----+---------+----------------+
+| id      | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name    | varchar(100) | YES  |     | NULL    |                |
+| email   | varchar(100) | YES  |     | NULL    |                |
+| website | varchar(100) | YES  |     | NULL    |                |
+| comment | varchar(200) | YES  |     | NULL    |                |
+| gender  | varchar(50)  | YES  |     | NULL    |                |
++---------+--------------+------+-----+---------+----------------+
+6 rows in set (0.001 sec)
+ 
+MariaDB [Login]> exit
+# To connect php with mysql
+sudo apt-get install php8.3-mysql
+   35  sudo service php8.3-fpm restart
+   36  sudo service mariadb restart
